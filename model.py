@@ -174,13 +174,13 @@ def generate_data(X_samples, y_samples):
     return  X_train, y_train
 
 
-
-def get_model(input_shape):
-    """
-    This function will return a convolutional neural network as described on
+"""
+    This function will return a convolutional neural network based on
     "End to End Learning for Self-Driving Cars" by NVIDIA
     http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf
-    """
+"""
+def get_model(input_shape):
+    
     i_rows, i_cols, i_channels = input_shape
 
     inputs = Input(((i_rows, i_cols, i_channels)))
@@ -219,7 +219,6 @@ def get_model(input_shape):
 
 if __name__ == '__main__':
     fig_path = './figures/' 
-    reg = 1e-3
     reg = 1e-3
     lr = 1e-3
     optimizer = Adam(lr=lr)  
