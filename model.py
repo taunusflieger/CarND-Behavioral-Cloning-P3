@@ -21,6 +21,9 @@ def resize(image):
 
 
 def process_image(image):
+    """
+    Processing pipeline for the image. Currently only resizing
+    """
     image = resize(image)
     return image
 
@@ -44,6 +47,7 @@ def load_data(name, file_path, X_data=None, y_data=None):
     df['steering'].plot.hist(title='Original steering distribution', bins=100)
     plt.savefig(fig_path + name + "_1.png")
     plt.gcf().clear()
+
     # Remove 92% of straight line driving data
     zero_indices = df[df['steering'] == 0].index
     remove_n = int(len(zero_indices)*0.92)
@@ -133,7 +137,6 @@ def disturb_brightness(img, strength=0.50):
     img = cv2.cvtColor(img, cv2.COLOR_HSV2RGB)
 
     return img
-
 
 
 def generate_data(X_samples, y_samples):
