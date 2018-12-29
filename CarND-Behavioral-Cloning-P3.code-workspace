@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.pythonPath": "/Users/michael/miniconda3/envs/carnd-term1/bin/python"
+	}
+}
