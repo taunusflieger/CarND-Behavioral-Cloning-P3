@@ -122,6 +122,7 @@ def random_shadow(img, strength=0.50):
     img = np.array(img).astype(np.uint8)
     img = cv2.cvtColor(img, cv2.COLOR_HLS2RGB)
 
+
     return img
 
 
