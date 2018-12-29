@@ -6,7 +6,7 @@
 
 [image1]: ./figures/track_2_b_1.png "Visualization"
 [image2]: ./figures/track_2_b_2.png "Visualization"
-[image3]: ./writeup-img/output_18_1.png "Visualization"
+[image3]: ./figures/NVIDIA.png "NVIDIA Model"
 [image4]: ./writeup-img/output_27_0.png "Visualization"
 [image5]: ./writeup-img/output_34_0.png "Visualization"
 [image6]: ./writeup-img/output_37_1.png "Visualization"
@@ -96,10 +96,59 @@ As an example the below figure shows the distribution of the steering angle befo
 
 ![alt text][image2]
 
+I’ve annotated the data by adding a certain percentage of additional data generated from the original data:
+1.	Random shadows (60%). Here the images are annotated with a randomly generated shadow overlay
+2.	Random Brightness (60%). Here brightness distribution is randomly changed
+3.	Flipped images (50%). The images are flipped (also the steering angle is multiplied by -1.0)	
+
+This approach increased the amount of training data to 64k training data points and 16k validation datapoints
+The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track for both track 1 and the challenging track 2. 
+
+#### 3. Model parameter tuning
+
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 291).
+
+#### 4. Appropriate training data
+
+In addition to the test data set which was provided by udacity, I recorded for track 1 a full track in the reverse direction. For track 2 I recorded two rounds. For all the recordings I tried to stay in the middle of the track with a smooth steering.
+
+### Model Architecture and Training Strategy
+
+#### 1. Solution Design Approach
+
+I decided to go with NVIDA model as suggested with in the course. The model part is straight forward. The trick part is really generating good training and validation data. Recording the data in an intelligent way, using the supplied test data and curating and annotating the data is key to success. In addition to the test data set which was provided by udacity, I recorded for track 1 a full track in the reverse direction. For track 2 I recorded two rounds.
+
+I decided not to use generator. On my system (iMac) the time to train the model increased by a factor of 20 compared to the version without a generator. As I have enough memory and not been able to use a GPU this was the most efficient approach for me.
+
+To combat the overfitting, I modified the model and added several BatchNormalization layers
+
+At the end of the process, the vehicle is able to drive autonomously around both tracks without leaving the road.
+
+#### 2. Final Model Architecture
+
+The final model architecture (model.py lines 177-215) consisted of a convolution neural network which follows the NVIDIA approach
+
+![alt text][image3]
 
 
+#### 3. Creation of the Training Set & Training Process
 
+To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
+![alt text][image2]
+
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+
+![alt text][image3]
+![alt text][image4]
+![alt text][image5]
+
+Then I repeated this process on track two in order to get more data points.
+
+To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+
+![alt text][image6]
+![alt text][image7]
 
 
 
